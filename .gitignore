@@ -1,0 +1,5 @@
+node_modules/
+.next/
+cloudflared.exe
+*.log
+.env

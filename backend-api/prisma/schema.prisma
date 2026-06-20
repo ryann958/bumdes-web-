@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  nama_lengkap  String
+  username      String   @unique
+  password_hash String
+  role          String   @default("Editor")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Produk {
+  id            String   @id @default(uuid())
+  nama_produk   String
+  deskripsi     String
+  harga         Decimal
+  stok          Int
+  pemilik_umkm  String
+  gambar_url    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Laporan_Keuangan {
+  id                String   @id @default(uuid())
+  bulan             Int
+  tahun             Int
+  total_pendapatan  Decimal
+  total_pengeluaran Decimal
+  file_pdf_url      String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
